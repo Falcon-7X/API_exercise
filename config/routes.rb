@@ -18,8 +18,19 @@ Rails.application.routes.draw do
       post "/reservations" => "reservations#create", :as => :create_reservations
       patch "/reservations/:booking_code" => "reservations#update", :as => :update_reservation
       delete "/reservations/:booking_code" => "reservations#destroy", :as => :cancel_reservation
+
+      post "/signup" => "auth#signup"
+      post "/login" => "auth#login"
+      post "/logout" => "auth#logout"
+
+      get "/me" => "users#show", :as => :user
+      patch "/me" => "users#update", :as => :update_user
+
     end
   end
 
   root "welcome#index"
+
+  get "/me" => "users#show", :as => :user
+  patch "/me" => "users#update", :as => :update_user
 end
